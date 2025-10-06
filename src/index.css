@@ -7,7 +7,7 @@
 
 :root {
   font-family: 'Anime Ace', Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px; /* Reduced base font size for smaller text */
   line-height: 1.5;
   font-weight: 400;
 
@@ -21,12 +21,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Responsive font sizes */
+@media (max-width: 768px) {
+  :root {
+    font-size: 12px; /* Smaller on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 11px; /* Even smaller on mobile */
+  }
+}
+
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  height:2700vh;
+  height: 2700vh;
   background-color: whitesmoke;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Adjust body height for smaller screens */
+@media (max-width: 768px) {
+  body {
+    height: 3200vh; /* Increased height for mobile to accommodate layout changes */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    height: 3500vh;
+  }
 }
 
