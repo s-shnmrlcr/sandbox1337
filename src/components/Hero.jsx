@@ -43,7 +43,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.8, delay: 0.3 }}
-          className="text-6xl sm:text-8xl md:text-9xl font-light tracking-wide mb-6 text-white"
+          className="text-5xl sm:text-7xl md:text-8xl font-light tracking-wide mb-6 text-white"
           style={{ fontFamily: 'Audiowide', textShadow: '0 0 40px rgba(255,255,255,0.3)' }}
         >
           Through an
@@ -52,7 +52,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.8, delay: 0.7 }}
-          className="text-5xl sm:text-7xl md:text-8xl font-light tracking-wide text-white mb-12"
+          className="text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-white mb-12"
           style={{ fontFamily: 'Audiowide', textShadow: '0 0 40px rgba(255,255,255,0.3)' }}
         >
           Astronaut's Eyes
@@ -61,7 +61,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 1.2 }}
-          className="text-2xl sm:text-3xl text-blue-200 italic max-w-3xl mx-auto leading-relaxed"
+          className="text-xl sm:text-2xl text-blue-200 italic max-w-3xl mx-auto leading-relaxed"
           style={{ fontFamily: 'Concert One' }}
         >
           A story of storms, shields, and wonder from the edge of space

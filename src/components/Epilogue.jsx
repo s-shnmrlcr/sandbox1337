@@ -9,7 +9,7 @@ const Epilogue = () => {
         <motion.h3 
           initial={{ opacity: 0 }} 
           whileInView={{ opacity: 1 }} 
-          className="text-4xl md:text-5xl font-light text-purple-200 mb-12"
+          className="text-3xl md:text-4xl font-light text-purple-200 mb-12"
         >
           Epilogue
         </motion.h3>
@@ -17,7 +17,7 @@ const Epilogue = () => {
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1 }} 
-          className="text-3xl md:text-4xl font-light leading-relaxed text-gray-200"
+          className="text-2xl md:text-3xl font-light leading-relaxed text-gray-200"
         >
           Our shield is invisible and our world fragile.
         </motion.p>
@@ -25,7 +25,7 @@ const Epilogue = () => {
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1, delay: 0.4 }} 
-          className="text-3xl md:text-4xl font-light leading-relaxed text-purple-300"
+          className="text-2xl md:text-3xl font-light leading-relaxed text-purple-300"
         >
           If we listen with curiosity and care, we can prepare—without fear, with wonder.
         </motion.p>

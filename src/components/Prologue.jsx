@@ -14,7 +14,7 @@ const Prologue = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1 }}
-          className="text-3xl md:text-5xl font-light leading-relaxed text-yellow-200"
+          className="text-2xl md:text-4xl font-light leading-relaxed text-yellow-200"
         >
           The Sun gives life, light, and warmth. Sometimes it sends storms.
         </motion.p>
@@ -23,7 +23,7 @@ const Prologue = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-2xl md:text-4xl font-light leading-relaxed text-blue-200"
+          className="text-xl md:text-3xl font-light leading-relaxed text-blue-200"
         >
           Invisible rivers of charged particles flow through space; Earth stands in their path.
         </motion.p>
@@ -32,7 +32,7 @@ const Prologue = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-2xl md:text-4xl font-light leading-relaxed text-purple-200"
+          className="text-xl md:text-3xl font-light leading-relaxed text-purple-200"
         >
           This is the story of one storm, told from the window of orbit.
         </motion.p>
@@ -41,7 +41,7 @@ const Prologue = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="text-2xl md:text-4xl font-light leading-relaxed text-pink-300 italic pt-6"
+          className="text-xl md:text-3xl font-light leading-relaxed text-pink-300 italic pt-6"
         >
           I am Commander Aria Vega. From up here the world speaks differently.
         </motion.p>

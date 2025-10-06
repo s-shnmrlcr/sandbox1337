@@ -213,7 +213,7 @@
 #landing-h1{
   position: absolute;
   margin: auto;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: black;
   font-weight: bold;
 }
@@ -276,7 +276,7 @@ p {
   flex: 2;
   margin: 1rem;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 #root {
@@ -308,7 +308,7 @@ p {
 
 @media (max-width: 480px) {
   h1, p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
 
