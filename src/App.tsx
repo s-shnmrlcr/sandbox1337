@@ -142,17 +142,28 @@ function App() {
 
   // This runs when YouTube is ready
   const onPlayerReady = (event: any) => {
-    setPlayer(event.target)       // 👉 Save player instance
-    event.target.setVolume(100)   // 👉 Start at full volume
+  setPlayer(event.target)
+  if (!isMuted) {
+    event.target.setVolume(100)
+    event.target.playVideo()
   }
+}
+
 
   // --- MUTE / UNMUTE TOGGLE BUTTON HANDLER ---
   const handleToggleAudio = () => {
-    if (!player) return           // If player isn't loaded yet, do nothing
-    const newMutedState = !isMuted
-    setIsMuted(newMutedState)
-    player.setVolume(newMutedState ? 0 : 100)   // Set volume to 0 (mute) or 100 (unmute)
+  if (!player) return
+  const newMutedState = !isMuted
+  setIsMuted(newMutedState)
+
+  if (newMutedState) {
+    player.pauseVideo()  // actually stops the music
+  } else {
+    player.playVideo()   // plays music again
+    player.setVolume(100)
   }
+}
+
 
   // --- ENSURE AUTOPLAY AFTER USER INTERACTION (Modern Browser Requirement) 
   useEffect(() => {

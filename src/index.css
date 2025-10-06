@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Anime Ace';
-  src: url('public/fonts/fonts/anime-ace/animeace.ttf') format('truetype');
+  src: url('src/fonts/anime-ace/animeace.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
