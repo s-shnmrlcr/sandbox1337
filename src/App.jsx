@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import Loader from './components/Loader';
 import Hero from './components/Hero';
 import Prologue from './components/Prologue';
-import App from './components/App.tsx';
+import Story from 'src/Story.tsx';
 import AuroraCanvasSection from './components/AuroraCanvasSection';
 import Epilogue from './components/Epilogue';
 import Credits from './components/Credits';
@@ -24,7 +24,7 @@ export default function App() {
           <Hero />
           <Prologue />
           <Characters />
-          <Chapter1 />
+          <Story />
           <AuroraCanvasSection />
           <Epilogue />
           <Credits />
