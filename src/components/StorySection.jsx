@@ -54,7 +54,7 @@ const StorySection = ({ children, image, video, bgOverlay = 'rgba(0,0,0,0.6)' })
           </motion.div>
         )}
         
-        <div className="prose prose-invert prose-lg md:prose-xl max-w-none">
+        <div className="prose prose-invert prose-base md:prose-lg max-w-none">
           {children}
         </div>
       </motion.div>

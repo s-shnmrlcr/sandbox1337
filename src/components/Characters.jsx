@@ -11,7 +11,7 @@ const Characters = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-light text-cyan-300 mb-12"
+          className="text-3xl md:text-4xl font-light text-cyan-300 mb-12"
         >
           Characters
         </motion.h3>
@@ -20,7 +20,7 @@ const Characters = () => {
           whileInView={{ opacity: 1 }} 
           viewport={{ once: false }} 
           transition={{ duration: 0.8 }} 
-          className="text-2xl md:text-3xl font-light leading-relaxed text-gray-200"
+          className="text-xl md:text-2xl font-light leading-relaxed text-gray-200"
         >
           I log the sky because it changes the lives below.
         </motion.p>
@@ -29,7 +29,7 @@ const Characters = () => {
           whileInView={{ opacity: 1 }} 
           viewport={{ once: false }} 
           transition={{ duration: 0.8, delay: 0.2 }} 
-          className="text-2xl md:text-3xl font-light leading-relaxed text-gray-200"
+          className="text-xl md:text-2xl font-light leading-relaxed text-gray-200"
         >
           Dr. Malik Chen keeps us steady and reminds me to breathe.
         </motion.p>
@@ -38,7 +38,7 @@ const Characters = () => {
           whileInView={{ opacity: 1 }} 
           viewport={{ once: false }} 
           transition={{ duration: 0.8, delay: 0.4 }} 
-          className="text-2xl md:text-3xl font-light leading-relaxed text-gray-200"
+          className="text-xl md:text-2xl font-light leading-relaxed text-gray-200"
         >
           Mission Control listens, learns, and relays the warnings we need.
         </motion.p>
@@ -47,7 +47,7 @@ const Characters = () => {
           whileInView={{ opacity: 1 }} 
           viewport={{ once: false }} 
           transition={{ duration: 0.8, delay: 0.6 }} 
-          className="text-2xl md:text-3xl font-light leading-relaxed text-purple-300 italic"
+          className="text-xl md:text-2xl font-light leading-relaxed text-purple-300 italic"
         >
           Earth does not speak with words, but with shields, lights, and storms.
         </motion.p>
