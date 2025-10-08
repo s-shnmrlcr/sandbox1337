@@ -235,7 +235,7 @@ function App() {
 
 
         {/* your svgs unchanged */}
-        <img id="p1-lira-svg" src='assets/p1/lira.svg' alt="Lira character"></img>
+        <img id="p1-lira-svg" src="assets/p1/lira.svg" alt="Lira character"></img>
         <img id="p1-lira-cam-svg" src="assets/p1/lira-cam.svg" alt="Lira with camera"></img>
         <img id="p1-sun-svg" src="assets/p1/sun.svg" alt="Sun"></img>
         <img id="p1-rain-svg" src="assets/p1/rain.svg" alt="Rain"></img>
