@@ -216,7 +216,7 @@ function App() {
       <div id="animation-container" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
 
         {/*Hidden Background Music Player */}
-        <div style={{ display: 'none' }}>
+        <div className="hidden-audio-player">
           <YouTube
             videoId="1NBnN0IAljQ"
             opts={playerOptions}
