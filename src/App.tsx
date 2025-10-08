@@ -174,85 +174,99 @@ function handleMouseEnter() {
 }
 
 function App() {
-  // --- AUDIO STATE & PLAYER SETUP ---  THIS CONTROLS BACKGROUND MUSIC
-  const [isMuted, setIsMuted] = useState(false)       // 👉 Tracks if music is muted or not
-  const [player, setPlayer] = useState<any>(null)     // 👉 Reference to YouTube player instance
+  // --- AUDIO STATE & PLAYER SETUP ---
+  const [isMuted, setIsMuted] = useState(false); // 🎵 Tracks mute state
+  const [player, setPlayer] = useState<any>(null); // 🎵 YouTube player reference
 
-  // YouTube Player Options (Hidden)
+  // --- YOUTUBE OPTIONS ---
   const playerOptions = {
-    height: '0',
-    width: '0',
+    height: "0",
+    width: "0",
     playerVars: {
       autoplay: 1,
       loop: 1,
-      playlist: '1NBnN0IAljQ', // REQUIRED for looping
+      playlist: "1NBnN0IAljQ", // must match videoId for looping
     },
-  }
+  };
 
-  // This runs when YouTube is ready
+  // --- WHEN YOUTUBE PLAYER IS READY ---
   const onPlayerReady = (event: any) => {
-  setPlayer(event.target)
-  if (!isMuted) {
-    event.target.setVolume(100)
-    event.target.playVideo()
-  }
-}
+    const ytPlayer = event.target;
+    setPlayer(ytPlayer);
 
+    // autoplay (if not muted)
+    if (!isMuted) {
+      ytPlayer.setVolume(100);
+      ytPlayer.playVideo();
+    }
 
-  // --- MUTE / UNMUTE TOGGLE BUTTON HANDLER ---
+    // Handle browsers blocking autoplay
+    const tryPlay = () => {
+      ytPlayer.playVideo();
+      document.removeEventListener("click", tryPlay);
+      document.removeEventListener("scroll", tryPlay);
+    };
+
+    document.addEventListener("click", tryPlay);
+    document.addEventListener("scroll", tryPlay);
+  };
+
+  // --- TOGGLE MUTE / UNMUTE ---
   const handleToggleAudio = () => {
-  if (!player) return
-  const newMutedState = !isMuted
-  setIsMuted(newMutedState)
+    if (!player) return;
 
-  if (newMutedState) {
-    player.pauseVideo()  // actually stops the music
-  } else {
-    player.playVideo()   // plays music again
-    player.setVolume(100)
-  }
-}
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
 
+    if (newMutedState) {
+      player.pauseVideo(); // stop the sound
+    } else {
+      player.playVideo(); // play again
+      player.setVolume(100);
+    }
+  };
 
-  // --- ENSURE AUTOPLAY AFTER USER INTERACTION (Modern Browser Requirement) 
+  // --- AUTOPLAY FALLBACK (for browsers like Chrome) ---
   useEffect(() => {
     const tryPlay = () => {
       if (player) {
-        player.playVideo()
-        document.removeEventListener('click', tryPlay)
-        document.removeEventListener('scroll', tryPlay)
+        player.playVideo();
+        document.removeEventListener("click", tryPlay);
+        document.removeEventListener("scroll", tryPlay);
       }
-    }
+    };
 
-    document.addEventListener('click', tryPlay)
-    document.addEventListener('scroll', tryPlay)
+    document.addEventListener("click", tryPlay);
+    document.addEventListener("scroll", tryPlay);
 
     return () => {
-      document.removeEventListener('click', tryPlay)
-      document.removeEventListener('scroll', tryPlay)
-    }
-  }, [player])
+      document.removeEventListener("click", tryPlay);
+      document.removeEventListener("scroll", tryPlay);
+    };
+  }, [player]);
 
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(useGSAP);
+  // --- GSAP SETUP ---
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(useGSAP);
 
-  initLenisSmoothScroll();  
-  useGSAP(fullAnimationTimeline)
+    initLenisSmoothScroll();
+    useGSAP(fullAnimationTimeline);
+  }, []);
 
-   useEffect(() => {
-  const mouseHandle = (e: MouseEvent) => {
-    const { clientX, clientY } = e;
-    gsap.to('#cursor-follower', {
-      x: clientX,
-      y: clientY
-    });
-  };
-  window.addEventListener('mousemove', mouseHandle);
-
-  return () => {
-    window.removeEventListener('mousemove', mouseHandle);
-  };
-}, []);
+  // --- CURSOR FOLLOW EFFECT ---
+  useEffect(() => {
+    const mouseHandle = (e: MouseEvent) => {
+      gsap.to("#cursor-follower", {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.2,
+        ease: "power2.out",
+      });
+    };
+    window.addEventListener("mousemove", mouseHandle);
+    return () => window.removeEventListener("mousemove", mouseHandle);
+  }, []);
 
 
 
