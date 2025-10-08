@@ -9,50 +9,50 @@
 }
 #p1-rain-svg {
   min-width: 350px;
-  width: 50%;
+  width: 30%;
   position: absolute;
   top: 0;
-  left: 22%;
+  left: 20%;
   z-index: -1;
 }
 #p1-stars-svg {
   min-width: 350px;
-  width: 50%;
+  width: 30%;
   position: absolute;
   top: 0;
-  left: 22%;
+  left: 20%;
   z-index: -1;
 }
 #p1-lira-svg {
   position: absolute;
   display: flex; 
-  left: 35%;
+  left: 15%;
   bottom: 5%;
-  min-width: 250px;
-  width: 25%;
+  min-width: 200px;
+  width: 20%;
   align-self: center;
 }
 #p1-lira-cam-svg {
   position: absolute;
-  left: 30%;
-  bottom: 20%;
-  min-width: 130px;
+  left: 20%;
+  bottom: 15%;
+  min-width: 120px;
   width: 10%;
   opacity: 0;
 }
 
 #p2-book-svg {
   position: absolute;
-  left: 20%;
+  left: 13%;
   bottom: 10%;
-  min-width: 200px;
-  width: 20%;
+  min-width: 150px;
+  width: 15%;
 }
 #p2-tv-svg {
   position: absolute;
-  left: 40%;
+  left: 30%;
   bottom: 20%;
-  min-width: 250px;
+  min-width: 200px;
   width: 30%;
   z-index: -1;
 }
@@ -78,16 +78,16 @@
 
 #p7-tv-svg {
   position: absolute;
-  left: 30%;
+  left: 15%;
   bottom: 10%;
-  min-width: 250px;
-  width: 40%;
+  min-width: 220px;
+  width: 30%;
   opacity: 1;
 }
 
 #p8-luggage-svg {
   position: absolute;
-  left: 30%;
+  left: 20%;
   bottom: 10%;
   min-width: 250px;
   width: 40%;
@@ -103,9 +103,9 @@
 }
 #p8-plane-svg {
   position: absolute;
-  left: 25%;
+  left: 20%;
   bottom: 25%;
-  min-width: 250px;
+  min-width: 220px;
   width: 40%;
   opacity: 1;
 }
@@ -145,19 +145,19 @@
 }
 #p9-alley-svg {
   position: absolute;
-  left:23% ;
+  left:0% ;
   bottom: 0;
-  min-width: 350px;
-  width: 50%;
+  min-width: 270px;
+  width: 40%;
   opacity: 1;
 }
 
 #p10-light-svg, #p10-no-light-svg {
   position: absolute;
-  left: 17% ;
+  left: 0% ;
   bottom: 0;
-  min-width: 350px;
-  width: 60%;
+  min-width: 270px;
+  width: 50%;
   opacity: 1;
 }
 #p10-no-light-svg {
@@ -166,16 +166,16 @@
 
 #p11-cloud1-svg {
   position: absolute;
-  left: 15% ;
-  bottom: 20%;
+  left: 20% ;
+  bottom: 30%;
   min-width: 350px;
   width: 40%;
   opacity: 1;
 }
 #p11-cloud2-svg {
   position: absolute;
-  right: 15% ;
-  bottom: 20%;
+  right: 20% ;
+  bottom: 30%;
   min-width: 350px;
   width: 40%;
   opacity: 1;
@@ -185,25 +185,25 @@
   left: 15% ;
   bottom: 15%;
   min-width: 600px;
-  width: 70%;
+  width: 60%;
   opacity: 1;
   z-index: -1;
 }
 
 #p12-camera-svg {
   position: absolute;
-  left: 30% ;
+  left: 5% ;
   bottom: 15%;
-  min-width: 350px;
-  width: 35%;
+  min-width: 280px;
+  width: 30%;
   opacity: 1;
 }
 
 #p13-living-room-svg {
   position: absolute;
-  left: 35%;
+  left: 20%;
   bottom: 0;
-  min-width: 250px;
+  min-width: 230px;
   width: 25%; 
   opacity: 1;
 }
@@ -276,7 +276,7 @@ p {
   flex: 2;
   margin: 1rem;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 #root {
