@@ -1,292 +1,215 @@
-import { useState, useEffect } from 'react'
-import { ReactLenis } from 'lenis/react'
-import Lenis from 'lenis'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
-import YouTube from 'react-youtube'
-import './App.css'
+import { ReactLenis } from "lenis/react";
+import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef, useState, useEffect } from "react";
+import "./App.css";
+
+// --- Audio Icons ---
+import mutedIcon from "./assets/audio-img/muted.png";
+import unmuteIcon from "./assets/audio-img/unmute.png";
+
 // --- Image Imports ---
-// Audio icons
-import mutedIcon from './assets/audio-img/muted.png';
-import unmuteIcon from './assets/audio-img/unmute.png';
-
 // Page 1
-import liraSvg from './assets/p1/lira.svg';
-import liraCamSvg from './assets/p1/lira-cam.svg';
-import sunSvg from './assets/p1/sun.svg';
-import rainSvg from './assets/p1/rain.svg';
-import starsSvg from './assets/p1/stars.svg';
-
+import liraSvg from "./assets/p1/lira.svg";
+import liraCamSvg from "./assets/p1/lira-cam.svg";
+import sunSvg from "./assets/p1/sun.svg";
+import rainSvg from "./assets/p1/rain.svg";
+import starsSvg from "./assets/p1/stars.svg";
 // Page 2
-import bookSvg from './assets/p2/book.svg';
-import tvSvg from './assets/p2/tv.svg';
-
+import bookSvg from "./assets/p2/book.svg";
+import tvSvg from "./assets/p2/tv.svg";
 // Page 4
-import sunP4Svg from './assets/p4/sun.svg';
-import earthSvg from './assets/p4/earth.svg';
-
+import sunP4Svg from "./assets/p4/sun.svg";
+import earthSvg from "./assets/p4/earth.svg";
 // Page 7
-import tvP7Svg from './assets/p7/tv.svg';
-
+import tvP7Svg from "./assets/p7/tv.svg";
 // Page 8
-import luggageSvg from './assets/p8/luggage.svg';
-import handSvg from './assets/p8/hand.svg';
-import planeSvg from './assets/p8/plane.svg';
-import cloud1Svg from './assets/p8/cloud1.svg';
-import cloud2Svg from './assets/p8/cloud2.svg';
-
+import luggageSvg from "./assets/p8/luggage.svg";
+import handSvg from "./assets/p8/hand.svg";
+import planeSvg from "./assets/p8/plane.svg";
+import cloud1Svg from "./assets/p8/cloud1.svg";
+import cloud2Svg from "./assets/p8/cloud2.svg";
 // Page 9
-import signal1Svg from './assets/p9/signal1.svg';
-import signal2Svg from './assets/p9/signal2.svg';
-import alleySvg from './assets/p9/alley.svg';
-
+import signal1Svg from "./assets/p9/signal1.svg";
+import signal2Svg from "./assets/p9/signal2.svg";
+import alleySvg from "./assets/p9/alley.svg";
 // Page 10
-import lightSvg from './assets/p10/light.svg';
-import noLightSvg from './assets/p10/no-light.svg';
-
+import lightSvg from "./assets/p10/light.svg";
+import noLightSvg from "./assets/p10/no-light.svg";
 // Page 11
-import cloudSvg from './assets/p11/cloud.svg';
-import auroraSvg from './assets/p11/aurora.svg';
-
+import cloudSvg from "./assets/p11/cloud.svg";
+import auroraSvg from "./assets/p11/aurora.svg";
 // Page 12
-import cameraSvg from './assets/p12/camera.svg';
-
+import cameraSvg from "./assets/p12/camera.svg";
 // Page 13
-import livingRoomSvg from './assets/p13/living-room.svg';
+import livingRoomSvg from "./assets/p13/living-room.svg";
 
-
-function fullAnimationTimeline(){
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: 'body',
-      start: 'top',
-      end: "96.29%",
-      scrub: true,
-      invalidateOnRefresh: true
-    }
-  })
-
-  // --- your animations unchanged ---
-  .to('#landing-h1', { opacity: 0 })
-  .to('#p1-lira-svg', { bottom: 0, left: '40%' },'<')
-  .to('#p1-text', { opacity: 1 })
-  .to('#p1-lira-cam-svg', { opacity: 1 },'<')
-  .from('#p1-sun-svg', { opacity: 0, y: 100 })
-  .from('#p1-rain-svg', { opacity: 0, y: 100 })
-  .to('#p1-sun-svg', { opacity: 0, y: -100 }, '<')
-  .to('#p1-rain-svg', { opacity: 0, y: -100 })
-  .from('#p1-stars-svg', { opacity: 0, y: 100 }, '<')
-  .to('#p1-text', { opacity: 0 })
-  .to('#p1-lira-svg', { opacity: 0 }, '<')
-  .to('#p1-lira-cam-svg', { opacity: 0 }, '<')
-  .to('#p1-stars-svg', { opacity: 0 }, '<')
-  .from('#p2-text', { opacity: 0 })
-  .from('#p2-book-svg', { opacity: 0 }, '<')
-  .from('#p2-tv-svg', { opacity: 0 }, '<')
-  .to('#p2-book-svg', { opacity: 0 })
-  .to('#p2-tv-svg', { scale: 1.3, x: -100 }, '<')
-  .to('#p2-tv-svg', { opacity: 0 })
-  .to('#p2-text', { opacity: 0 }, '<')
-  .from('#p4-sun-svg', { opacity: 0 })
-  .from('#p4-text', { opacity: 0 }, '<')
-  .from('#p4-earth-svg', { opacity: 0 }, '<')
-  .to('#p4-text', { opacity: 0 })
-  .to('#p4-earth-svg', { opacity: 0 })
-  .to('#p4-sun-svg', { scale: 1.2, x: 200 }, '<')
-  .from('#p5-text', { opacity: 0 }, '<')
-  .to('#p5-text', { opacity: 0 })
-  .from('#p6-text', { opacity: 0 })
-  .to('#p4-sun-svg', { opacity: 0 })
-  .to('#p4-earth-svg', { opacity: 1, scale: 1.2, x: -200 }, '<')
-  .to('#p6-text', { opacity: 0 })
-  .to('#p4-earth-svg', { opacity: 0 }, '<')
-  .from('#p7-text', { opacity: 0 })
-  .from('#p7-tv-svg', { opacity: 0 }, '<')
-  .to('#p7-tv-svg', { opacity: 0 })
-  .to('#p7-text', { opacity: 0 }, '<')
-  .from('#p8-luggage-svg', { opacity: 0 })
-  .from('#p8-hand-svg', { x:-100, y:-100, opacity: 0 }, '<')
-  .from('#p8-text', { opacity: 0 }, '<')
-  .to('#p8-luggage-svg', { opacity: 0 })
-  .to('#p8-hand-svg', { opacity: 0 }, '<')
-  .from('#p8-plane-svg', { opacity: 0 }, '<')
-  .from('#p8-cloud1-svg', { opacity: 0 }, '<')
-  .from('#p8-cloud2-svg', { opacity: 0 }, '<')
-  .to('#p8-cloud1-svg', { x: -100, opacity: 0 })
-  .to('#p8-cloud2-svg', { x: -300, opacity: 0 }, '<')
-  .to('#p8-text', { opacity: 0 })
-  .from('#p9-text', { opacity: 0 })
-  .to('#p8-plane-svg', { scale: 0.8, y: 50 }, '<')
-  .from('#p9-signal1-svg', { opacity: 0 })
-  .to('#p9-signal1-svg', { opacity: 0 })
-  .from('#p9-signal2-svg', { opacity: 0 }, '<')
-  .to('#p8-plane-svg', { opacity: 0 })
-  .to('#p9-signal2-svg', { opacity: 0 }, '<')
-  .from('#p9-alley-svg', { opacity: 0 }, '<')
-  .to('#p9-alley-svg', { opacity: 0 })
-  .to('#p9-text', { opacity: 0 }, '<')
-  .from('#p10-text', { opacity: 0 })
-  .from('#p10-light-svg', { opacity: 0 }, '<')
-  .to('#p10-light-svg', { opacity: 0 })
-  .to('#p10-no-light-svg', { opacity: 1 }, '<')
-  .to('#p10-no-light-svg', { opacity: 0 })
-  .to('#p10-text', { opacity: 0 }, '<')
-  .from('#p11-text', { opacity: 0 })
-  .from('#p11-cloud1-svg', { opacity: 0 }, '<')
-  .from('#p11-cloud2-svg', { opacity: 0 }, '<')
-  .to('#p11-cloud1-svg', { x: -350 })
-  .to('#p11-cloud2-svg', { x: 350 }, '<')
-  .from('#p11-aurora-svg', { opacity: 0 })
-  .to('#p11-aurora-svg', { opacity: 0 })
-  .to('#p11-cloud1-svg', { opacity: 0 })
-  .to('#p11-cloud2-svg', { opacity: 0 }, '<')
-  .to('#p11-text', { opacity: 0 }, '<')
-  .from('#p12-camera-svg', { opacity: 0, y: 100 })
-  .from('#p12-text', { opacity: 0 }, '<')
-  .to('#p12-text', { opacity: 0 })
-  .to('#p12-text', { opacity: 0 }, '<')
-  .to('#p12-text', { opacity: 0 }, '<')
-  .to('#p12-camera-svg', { opacity: 0 }, '<')
-  .from('#p13-text', { opacity: 0 })
-  .from('#p13-living-room-svg', { opacity: 0 }, '<')
+function fullAnimationTimeline() {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "body",
+        start: "top",
+        end: "96.29%",
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    })
+    .to("#landing-h1", { opacity: 0 })
+    .to("#p1-lira-svg", { bottom: 0, left: "40%" }, "<")
+    .to("#p1-text", { opacity: 1 })
+    .to("#p1-lira-cam-svg", { opacity: 1 }, "<")
+    .from("#p1-sun-svg", { opacity: 0, y: 100 })
+    .from("#p1-rain-svg", { opacity: 0, y: 100 })
+    .to("#p1-sun-svg", { opacity: 0, y: -100 }, "<")
+    .to("#p1-rain-svg", { opacity: 0, y: -100 })
+    .from("#p1-stars-svg", { opacity: 0, y: 100 }, "<")
+    .to("#p1-text", { opacity: 0 })
+    .to("#p1-lira-svg", { opacity: 0 }, "<")
+    .to("#p1-lira-cam-svg", { opacity: 0 }, "<")
+    .to("#p1-stars-svg", { opacity: 0 }, "<")
+    .from("#p2-text", { opacity: 0 })
+    .from("#p2-book-svg", { opacity: 0 }, "<")
+    .from("#p2-tv-svg", { opacity: 0 }, "<")
+    .to("#p2-book-svg", { opacity: 0 })
+    .to("#p2-tv-svg", { scale: 1.3, x: -100 }, "<")
+    .to("#p2-tv-svg", { opacity: 0 })
+    .to("#p2-text", { opacity: 0 }, "<")
+    .from("#p4-sun-svg", { opacity: 0 })
+    .from("#p4-text", { opacity: 0 }, "<")
+    .from("#p4-earth-svg", { opacity: 0 }, "<")
+    .to("#p4-text", { opacity: 0 })
+    .to("#p4-earth-svg", { opacity: 0 })
+    .to("#p4-sun-svg", { scale: 1.2, x: 200 }, "<")
+    .from("#p5-text", { opacity: 0 }, "<")
+    .to("#p5-text", { opacity: 0 })
+    .from("#p6-text", { opacity: 0 })
+    .to("#p4-sun-svg", { opacity: 0 })
+    .to("#p4-earth-svg", { opacity: 1, scale: 1.2, x: -200 }, "<")
+    .to("#p6-text", { opacity: 0 })
+    .to("#p4-earth-svg", { opacity: 0 }, "<")
+    .from("#p7-text", { opacity: 0 })
+    .from("#p7-tv-svg", { opacity: 0 }, "<")
+    .to("#p7-tv-svg", { opacity: 0 })
+    .to("#p7-text", { opacity: 0 }, "<")
+    .from("#p8-luggage-svg", { opacity: 0 })
+    .from("#p8-hand-svg", { x: -100, y: -100, opacity: 0 }, "<")
+    .from("#p8-text", { opacity: 0 }, "<")
+    .to("#p8-luggage-svg", { opacity: 0 })
+    .to("#p8-hand-svg", { opacity: 0 }, "<")
+    .from("#p8-plane-svg", { opacity: 0 }, "<")
+    .from("#p8-cloud1-svg", { opacity: 0 }, "<")
+    .from("#p8-cloud2-svg", { opacity: 0 }, "<")
+    .to("#p8-cloud1-svg", { x: -100, opacity: 0 })
+    .to("#p8-cloud2-svg", { x: -300, opacity: 0 }, "<")
+    .to("#p8-text", { opacity: 0 })
+    .from("#p9-text", { opacity: 0 })
+    .to("#p8-plane-svg", { scale: 0.8, y: 50 }, "<")
+    .from("#p9-signal1-svg", { opacity: 0 })
+    .to("#p9-signal1-svg", { opacity: 0 })
+    .from("#p9-signal2-svg", { opacity: 0 }, "<")
+    .to("#p8-plane-svg", { opacity: 0 })
+    .to("#p9-signal2-svg", { opacity: 0 }, "<")
+    .from("#p9-alley-svg", { opacity: 0 }, "<")
+    .to("#p9-alley-svg", { opacity: 0 })
+    .to("#p9-text", { opacity: 0 }, "<")
+    .from("#p10-text", { opacity: 0 })
+    .from("#p10-light-svg", { opacity: 0 }, "<")
+    .to("#p10-light-svg", { opacity: 0 })
+    .to("#p10-no-light-svg", { opacity: 1 }, "<")
+    .to("#p10-no-light-svg", { opacity: 0 })
+    .to("#p10-text", { opacity: 0 }, "<")
+    .from("#p11-text", { opacity: 0 })
+    .from("#p11-cloud1-svg", { opacity: 0 }, "<")
+    .from("#p11-cloud2-svg", { opacity: 0 }, "<")
+    .to("#p11-cloud1-svg", { x: -350 })
+    .to("#p11-cloud2-svg", { x: 350 }, "<")
+    .from("#p11-aurora-svg", { opacity: 0 })
+    .to("#p11-aurora-svg", { opacity: 0 })
+    .to("#p11-cloud1-svg", { opacity: 0 })
+    .to("#p11-cloud2-svg", { opacity: 0 }, "<")
+    .to("#p11-text", { opacity: 0 }, "<")
+    .from("#p12-camera-svg", { opacity: 0, y: 100 })
+    .from("#p12-text", { opacity: 0 }, "<")
+    .to("#p12-text", { opacity: 0 })
+    .to("#p12-camera-svg", { opacity: 0 }, "<")
+    .from("#p13-text", { opacity: 0 })
+    .from("#p13-living-room-svg", { opacity: 0 }, "<");
 }
 
-function initLenisSmoothScroll(){
+function initLenisSmoothScroll() {
   const lenis = new Lenis();
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 }
 
-function handleMouseLeave() {
-  gsap.to('#cursor-follower', {
-    opacity: 0
-  })
-}
-
-function handleMouseEnter() {
-  gsap.to('#cursor-follower', {
-    opacity: 1
-  })
-}
-
 function App() {
-  // --- AUDIO STATE & PLAYER SETUP ---  THIS CONTROLS BACKGROUND MUSIC
-  const [isMuted, setIsMuted] = useState(false)       // 👉 Tracks if music is muted or not
-  const [player, setPlayer] = useState<any>(null)     // 👉 Reference to YouTube player instance
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isMuted, setIsMuted] = useState(false);
 
-  // YouTube Player Options (Hidden)
-  const playerOptions = {
-    height: '0',
-    width: '0',
-    playerVars: {
-      autoplay: 1,
-      loop: 1,
-      playlist: '1NBnN0IAljQ', // REQUIRED for looping
-    },
-  }
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+  useGSAP(fullAnimationTimeline);
+  useEffect(() => initLenisSmoothScroll(), []);
 
-  // --- WHEN YOUTUBE PLAYER IS READY ---
-const onPlayerReady = (event: any) => {
-  const ytPlayer = event.target;
-  setPlayer(ytPlayer);
-
-  // Try immediate autoplay
-  if (!isMuted) {
-    ytPlayer.setVolume(100);
-    ytPlayer.playVideo().catch(() => {
-      // if blocked, wait for interaction
-      console.warn("Autoplay blocked, waiting for user interaction...");
-    });
-  }}
-
-
-  // --- MUTE / UNMUTE TOGGLE BUTTON HANDLER ---
-  const handleToggleAudio = () => {
-  if (!player) return
-  const newMutedState = !isMuted
-  setIsMuted(newMutedState)
-
-  if (newMutedState) {
-    player.pauseVideo()  // actually stops the music
-  } else {
-    player.playVideo()   // plays music again
-    player.setVolume(100)
-  }
-}
-
-
-  // --- ENSURE AUTOPLAY AFTER USER INTERACTION (Modern Browser Requirement) 
+  // ✅ Autoplay immediately
   useEffect(() => {
-    const tryPlay = () => {
-      if (player) {
-        player.playVideo()
-        document.removeEventListener('click', tryPlay)
-        document.removeEventListener('scroll', tryPlay)
-      }
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = 1.0;
+      audio.play().catch(() => {
+        // fallback if autoplay blocked
+        const tryPlay = () => {
+          audio.play().catch(() => {});
+          document.removeEventListener("click", tryPlay);
+          document.removeEventListener("scroll", tryPlay);
+        };
+        document.addEventListener("click", tryPlay);
+        document.addEventListener("scroll", tryPlay);
+      });
     }
+  }, []);
 
-    document.addEventListener('click', tryPlay)
-    document.addEventListener('scroll', tryPlay)
-
-    return () => {
-      document.removeEventListener('click', tryPlay)
-      document.removeEventListener('scroll', tryPlay)
+  // ✅ Toggle mute/unmute
+  const handleToggleAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isMuted) {
+      audio.play();
+    } else {
+      audio.pause();
     }
-  }, [player])
-
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(useGSAP);
-
-  initLenisSmoothScroll();  
-  useGSAP(fullAnimationTimeline)
-
-   useEffect(() => {
-  const mouseHandle = (e: MouseEvent) => {
-    const { clientX, clientY } = e;
-    gsap.to('#cursor-follower', {
-      x: clientX,
-      y: clientY
-    });
+    setIsMuted(!isMuted);
   };
-  window.addEventListener('mousemove', mouseHandle);
 
-  return () => {
-    window.removeEventListener('mousemove', mouseHandle);
-  };
-}, []);
-
-
+  // ✅ Cursor follower
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => {
+      gsap.to("#cursor-follower", { x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouse);
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, []);
 
   return (
     <>
       <ReactLenis root />
       <div id="cursor-follower"></div>
 
+      <div id="animation-container">
+        {/* 🎵 Background Music */}
+        <audio ref={audioRef} src="/assets/audio/bg-music.mp3" loop autoPlay />
 
-      <div id="animation-container" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
-
-        {/*Hidden Background Music Player */}
-        <div className="hidden-audio-player">
-          <YouTube
-            videoId="1NBnN0IAljQ"
-            opts={playerOptions}
-            onReady={onPlayerReady}
+        {/* 🔊 Mute / Unmute Button */}
+        <button id="audio-btn" onClick={handleToggleAudio}>
+          <img
+            src={isMuted ? mutedIcon : unmuteIcon}
+            alt="Audio Button"
+            id="unmute-audio-btn"
           />
-        </div>
-
-       {/* Visible Mute / Unmute Button */}
-<button id='audio-btn' onClick={handleToggleAudio}>
-  <img
-    src={isMuted ? mutedIcon : unmuteIcon}
-    id='unmute-audio-btn'
-    alt="Audio Button"
-  />
-</button>
-
+        </button>
 {/* your svgs unchanged */}
         <img id="p1-lira-svg" src={liraSvg} alt="Lira illustration" />
         <img id="p1-lira-cam-svg" src={liraCamSvg} alt="Lira with camera" />
