@@ -227,7 +227,7 @@ function App() {
         {/* Visible Mute / Unmute Button */}
         <button id='audio-btn' onClick={handleToggleAudio}>
           <img
-            src={isMuted ? 'src/assets/audio-img/muted.png' : 'src/assets/audio-img/unmute.png'}
+            src={isMuted ? '/assets/audio-img/muted.png' : '/assets/audio-img/unmute.png'}
             id='unmute-audio-btn'
             alt="Audio Button"
           />
@@ -235,40 +235,40 @@ function App() {
 
 
         {/* your svgs unchanged */}
-        <img id="p1-lira-svg" src='src/assets/p1/lira.svg' alt="Lira character"></img>
-        <img id="p1-lira-cam-svg" src="src/assets/p1/lira-cam.svg" alt="Lira with camera"></img>
-        <img id="p1-sun-svg" src="src/assets/p1/sun.svg" alt="Sun"></img>
-        <img id="p1-rain-svg" src="src/assets/p1/rain.svg" alt="Rain"></img>
-        <img id="p1-stars-svg" src="src/assets/p1/stars.svg" alt="Stars"></img>
+        <img id="p1-lira-svg" src='/assets/p1/lira.svg' alt="Lira character"></img>
+        <img id="p1-lira-cam-svg" src="/assets/p1/lira-cam.svg" alt="Lira with camera"></img>
+        <img id="p1-sun-svg" src="/assets/p1/sun.svg" alt="Sun"></img>
+        <img id="p1-rain-svg" src="/assets/p1/rain.svg" alt="Rain"></img>
+        <img id="p1-stars-svg" src="/assets/p1/stars.svg" alt="Stars"></img>
 
-        <img id="p2-book-svg" src="src/assets/p2/book.svg" alt="Book"></img>
-        <img id="p2-tv-svg" src="src/assets/p2/tv.svg" alt="Television"></img>
+        <img id="p2-book-svg" src="/assets/p2/book.svg" alt="Book"></img>
+        <img id="p2-tv-svg" src="/assets/p2/tv.svg" alt="Television"></img>
 
-        <img id="p4-sun-svg" src="src/assets/p4/sun.svg" alt="Sun"></img>
-        <img id="p4-earth-svg" src="src/assets/p4/earth.svg" alt="Earth"></img>
+        <img id="p4-sun-svg" src="/assets/p4/sun.svg" alt="Sun"></img>
+        <img id="p4-earth-svg" src="/assets/p4/earth.svg" alt="Earth"></img>
 
-        <img id="p7-tv-svg" src="src/assets/p7/tv.svg" alt="Television"></img>
+        <img id="p7-tv-svg" src="/assets/p7/tv.svg" alt="Television"></img>
 
-        <img id="p8-luggage-svg" src="src/assets/p8/luggage.svg" alt="Luggage"></img>
-        <img id="p8-hand-svg" src="src/assets/p8/hand.svg" alt="Hand"></img>
-        <img id="p8-plane-svg" src="src/assets/p8/plane.svg" alt="Airplane"></img>
-        <img id="p8-cloud1-svg" src="src/assets/p8/cloud1.svg" alt="Cloud"></img>
-        <img id="p8-cloud2-svg" src="src/assets/p8/cloud2.svg" alt="Cloud"></img>
+        <img id="p8-luggage-svg" src="/assets/p8/luggage.svg" alt="Luggage"></img>
+        <img id="p8-hand-svg" src="/assets/p8/hand.svg" alt="Hand"></img>
+        <img id="p8-plane-svg" src="/assets/p8/plane.svg" alt="Airplane"></img>
+        <img id="p8-cloud1-svg" src="/assets/p8/cloud1.svg" alt="Cloud"></img>
+        <img id="p8-cloud2-svg" src="/assets/p8/cloud2.svg" alt="Cloud"></img>
 
-        <img id="p9-signal1-svg" src="src/assets/p9/signal1.svg" alt="Radio signal"></img>
-        <img id="p9-signal2-svg" src="src/assets/p9/signal2.svg" alt="Radio signal"></img>
-        <img id="p9-alley-svg" src="src/assets/p9/alley.svg" alt="Alley"></img>
+        <img id="p9-signal1-svg" src="/assets/p9/signal1.svg" alt="Radio signal"></img>
+        <img id="p9-signal2-svg" src="/assets/p9/signal2.svg" alt="Radio signal"></img>
+        <img id="p9-alley-svg" src="/assets/p9/alley.svg" alt="Alley"></img>
 
-        <img id="p10-light-svg" src="src/assets/p10/light.svg" alt="Light"></img>
-        <img id="p10-no-light-svg" src="src/assets/p10/no-light.svg" alt="No light"></img>
+        <img id="p10-light-svg" src="/assets/p10/light.svg" alt="Light"></img>
+        <img id="p10-no-light-svg" src="/assets/p10/no-light.svg" alt="No light"></img>
 
-        <img id="p11-cloud1-svg" src="src/assets/p11/cloud.svg" alt="Cloud"></img>
-        <img id="p11-cloud2-svg" src="src/assets/p11/cloud.svg" alt="Cloud"></img>
-        <img id="p11-aurora-svg" src="src/assets/p11/aurora.svg" alt="Aurora"></img>
+        <img id="p11-cloud1-svg" src="/assets/p11/cloud.svg" alt="Cloud"></img>
+        <img id="p11-cloud2-svg" src="/assets/p11/cloud.svg" alt="Cloud"></img>
+        <img id="p11-aurora-svg" src="/assets/p11/aurora.svg" alt="Aurora"></img>
 
-        <img id="p12-camera-svg" src="src/assets/p12/camera.svg" alt="Camera"></img>
+        <img id="p12-camera-svg" src="/assets/p12/camera.svg" alt="Camera"></img>
 
-        <img id="p13-living-room-svg" src="src/assets/p13/living-room.svg" alt="Living room"></img>
+        <img id="p13-living-room-svg" src="/assets/p13/living-room.svg" alt="Living room"></img>
         
       </div>
 
