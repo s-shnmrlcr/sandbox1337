@@ -174,99 +174,90 @@ function handleMouseEnter() {
 }
 
 function App() {
-  // --- AUDIO STATE & PLAYER SETUP ---
-  const [isMuted, setIsMuted] = useState(false); // 🎵 Tracks mute state
-  const [player, setPlayer] = useState<any>(null); // 🎵 YouTube player reference
+  // --- AUDIO STATE & PLAYER SETUP ---  THIS CONTROLS BACKGROUND MUSIC
+  const [isMuted, setIsMuted] = useState(false)       // 👉 Tracks if music is muted or not
+  const [player, setPlayer] = useState<any>(null)     // 👉 Reference to YouTube player instance
 
-  // --- YOUTUBE OPTIONS ---
+  // YouTube Player Options (Hidden)
   const playerOptions = {
-    height: "0",
-    width: "0",
+    height: '0',
+    width: '0',
     playerVars: {
       autoplay: 1,
       loop: 1,
-      playlist: "1NBnN0IAljQ", // must match videoId for looping
+      playlist: '1NBnN0IAljQ', // REQUIRED for looping
     },
-  };
+  }
 
   // --- WHEN YOUTUBE PLAYER IS READY ---
-  const onPlayerReady = (event: any) => {
-    const ytPlayer = event.target;
-    setPlayer(ytPlayer);
+const onPlayerReady = (event: any) => {
+  const ytPlayer = event.target;
+  setPlayer(ytPlayer);
 
-    // autoplay (if not muted)
-    if (!isMuted) {
-      ytPlayer.setVolume(100);
-      ytPlayer.playVideo();
-    }
+  // Try immediate autoplay
+  if (!isMuted) {
+    ytPlayer.setVolume(100);
+    ytPlayer.playVideo().catch(() => {
+      // if blocked, wait for interaction
+      console.warn("Autoplay blocked, waiting for user interaction...");
+    });
+  }}
 
-    // Handle browsers blocking autoplay
-    const tryPlay = () => {
-      ytPlayer.playVideo();
-      document.removeEventListener("click", tryPlay);
-      document.removeEventListener("scroll", tryPlay);
-    };
 
-    document.addEventListener("click", tryPlay);
-    document.addEventListener("scroll", tryPlay);
-  };
-
-  // --- TOGGLE MUTE / UNMUTE ---
+  // --- MUTE / UNMUTE TOGGLE BUTTON HANDLER ---
   const handleToggleAudio = () => {
-    if (!player) return;
+  if (!player) return
+  const newMutedState = !isMuted
+  setIsMuted(newMutedState)
 
-    const newMutedState = !isMuted;
-    setIsMuted(newMutedState);
+  if (newMutedState) {
+    player.pauseVideo()  // actually stops the music
+  } else {
+    player.playVideo()   // plays music again
+    player.setVolume(100)
+  }
+}
 
-    if (newMutedState) {
-      player.pauseVideo(); // stop the sound
-    } else {
-      player.playVideo(); // play again
-      player.setVolume(100);
-    }
-  };
 
-  // --- AUTOPLAY FALLBACK (for browsers like Chrome) ---
+  // --- ENSURE AUTOPLAY AFTER USER INTERACTION (Modern Browser Requirement) 
   useEffect(() => {
     const tryPlay = () => {
       if (player) {
-        player.playVideo();
-        document.removeEventListener("click", tryPlay);
-        document.removeEventListener("scroll", tryPlay);
+        player.playVideo()
+        document.removeEventListener('click', tryPlay)
+        document.removeEventListener('scroll', tryPlay)
       }
-    };
+    }
 
-    document.addEventListener("click", tryPlay);
-    document.addEventListener("scroll", tryPlay);
+    document.addEventListener('click', tryPlay)
+    document.addEventListener('scroll', tryPlay)
 
     return () => {
-      document.removeEventListener("click", tryPlay);
-      document.removeEventListener("scroll", tryPlay);
-    };
-  }, [player]);
+      document.removeEventListener('click', tryPlay)
+      document.removeEventListener('scroll', tryPlay)
+    }
+  }, [player])
 
-  // --- GSAP SETUP ---
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(useGSAP);
 
-    initLenisSmoothScroll();
-    useGSAP(fullAnimationTimeline);
-  }, []);
+  initLenisSmoothScroll();  
+  useGSAP(fullAnimationTimeline)
 
-  // --- CURSOR FOLLOW EFFECT ---
-  useEffect(() => {
-    const mouseHandle = (e: MouseEvent) => {
-      gsap.to("#cursor-follower", {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.2,
-        ease: "power2.out",
-      });
-    };
-    window.addEventListener("mousemove", mouseHandle);
-    return () => window.removeEventListener("mousemove", mouseHandle);
-  }, []);
+   useEffect(() => {
+  const mouseHandle = (e: MouseEvent) => {
+    const { clientX, clientY } = e;
+    gsap.to('#cursor-follower', {
+      x: clientX,
+      y: clientY
+    });
+  };
+  window.addEventListener('mousemove', mouseHandle);
+
+  return () => {
+    window.removeEventListener('mousemove', mouseHandle);
+  };
+}, []);
 
 
 
@@ -297,40 +288,40 @@ function App() {
 </button>
 
 {/* your svgs unchanged */}
-<img id="p1-lira-svg" src={liraSvg} />
-<img id="p1-lira-cam-svg" src={liraCamSvg} />
-<img id="p1-sun-svg" src={sunSvg} />
-<img id="p1-rain-svg" src={rainSvg} />
-<img id="p1-stars-svg" src={starsSvg} />
+        <img id="p1-lira-svg" src={liraSvg} alt="Lira illustration" />
+        <img id="p1-lira-cam-svg" src={liraCamSvg} alt="Lira with camera" />
+        <img id="p1-sun-svg" src={sunSvg} alt="Sun" />
+        <img id="p1-rain-svg" src={rainSvg} alt="Rain" />
+        <img id="p1-stars-svg" src={starsSvg} alt="Stars" />
 
-<img id="p2-book-svg" src={bookSvg} />
-<img id="p2-tv-svg" src={tvSvg} />
+        <img id="p2-book-svg" src={bookSvg} alt="Book" />
+        <img id="p2-tv-svg" src={tvSvg} alt="Television" />
 
-<img id="p4-sun-svg" src={sunP4Svg} />
-<img id="p4-earth-svg" src={earthSvg} />
+        <img id="p4-sun-svg" src={sunP4Svg} alt="Sun on page 4" />
+        <img id="p4-earth-svg" src={earthSvg} alt="Earth" />
 
-<img id="p7-tv-svg" src={tvP7Svg} />
+        <img id="p7-tv-svg" src={tvP7Svg} alt="Television on page 7" />
 
-<img id="p8-luggage-svg" src={luggageSvg} />
-<img id="p8-hand-svg" src={handSvg} />
-<img id="p8-plane-svg" src={planeSvg} />
-<img id="p8-cloud1-svg" src={cloud1Svg} />
-<img id="p8-cloud2-svg" src={cloud2Svg} />
+        <img id="p8-luggage-svg" src={luggageSvg} alt="Luggage" />
+        <img id="p8-hand-svg" src={handSvg} alt="Hand" />
+        <img id="p8-plane-svg" src={planeSvg} alt="Airplane" />
+        <img id="p8-cloud1-svg" src={cloud1Svg} alt="Cloud 1" />
+        <img id="p8-cloud2-svg" src={cloud2Svg} alt="Cloud 2" />
 
-<img id="p9-signal1-svg" src={signal1Svg} />
-<img id="p9-signal2-svg" src={signal2Svg} />
-<img id="p9-alley-svg" src={alleySvg} />
+        <img id="p9-signal1-svg" src={signal1Svg} alt="Signal 1" />
+        <img id="p9-signal2-svg" src={signal2Svg} alt="Signal 2" />
+        <img id="p9-alley-svg" src={alleySvg} alt="Alley" />
 
-<img id="p10-light-svg" src={lightSvg} />
-<img id="p10-no-light-svg" src={noLightSvg} />
+        <img id="p10-light-svg" src={lightSvg} alt="Light" />
+        <img id="p10-no-light-svg" src={noLightSvg} alt="No light" />
 
-<img id="p11-cloud1-svg" src={cloudSvg} />
-<img id="p11-cloud2-svg" src={cloudSvg} />
-<img id="p11-aurora-svg" src={auroraSvg} />
+        <img id="p11-cloud1-svg" src={cloudSvg} alt="Cloud 1" />
+        <img id="p11-cloud2-svg" src={cloudSvg} alt="Cloud 2" />
+        <img id="p11-aurora-svg" src={auroraSvg} alt="Aurora" />
 
-<img id="p12-camera-svg" src={cameraSvg} />
+        <img id="p12-camera-svg" src={cameraSvg} alt="Camera" />
 
-<img id="p13-living-room-svg" src={livingRoomSvg} />
+        <img id="p13-living-room-svg" src={livingRoomSvg} alt="Living room" />
 
       </div>
 
